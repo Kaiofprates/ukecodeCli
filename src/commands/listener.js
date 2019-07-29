@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'teste',
+    name: 'listener',
     run: async toolbox => {
       const { print } = toolbox
 
@@ -27,13 +27,12 @@ module.exports = {
           firebase.initializeApp(credenciais.firebaseConfig);
 
           const data = firebase.database().ref('data/feed')
-          console.log(`${Date(Date.now()).split(' ')[4]} --------  ${store.get('email')}`.inverse )
+          console.log(`
+    [ UkeCode v1.0 by Kaio Prates]    ${Date(Date.now()).split(' ')[4]} --------  ${store.get('email')}`.inverse )
           data.on("value", (resp) => {
             console.log(`
-            [--------------------------------------------------------]
             |  ${resp.val()}                                         
             [--------------------------------------------------------]
-
             `.magenta)
           
           
