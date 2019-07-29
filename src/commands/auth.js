@@ -14,7 +14,6 @@ module.exports = {
           var firebase = require('firebase');
           var credenciais = require('../../keys/credentials.js')
           
-          
           // Initialize Firebase
           firebase.initializeApp(credenciais.firebaseConfig);
           

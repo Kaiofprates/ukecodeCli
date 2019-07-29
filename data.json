@@ -1,0 +1,16 @@
+{
+  "users" : [
+     {
+    "uid"  : "kaio1231",
+    "friends" : ["123","12312","12312"],
+    "mensages" : {
+      "0" : {
+        "content" : "Mensagem de teste",
+        "to" : "123",
+        "date": "27,07,2019"
+        
+      }
+    }
+  }
+  ]
+}

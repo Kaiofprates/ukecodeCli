@@ -1,0 +1,48 @@
+try{
+                var database = firebase.database().ref("/users");
+
+                database.on(
+                  "value",
+                  function(response) {
+                    var data = response.val()
+                    //console.log(data.length)
+
+                     //--------construção do campo de dados---
+
+                    var novoUser = firebase.database().ref("/users/"+data.length)
+
+                    const new_data  = [{
+                        "uid"  : firebase.auth().currentUser.uid,
+                        "friends" : ["0"],
+                        "mensages" : {
+                          "0" : {
+                            "content" : "null",
+                            "to" : "null",
+                            "date": "null"
+                            
+                          }
+                        }
+                    }]
+              
+                    var user = firebase.auth().currentUser.uid
+                    var dados = {}
+                    dados[user] = new_data;
+                    
+              
+                    novoUser.set(dados,(err)=>{
+                      if(err){
+                        //console.log('erro de gravação     ' +  err)
+                      }
+                    })
+
+                    
+                  },
+                  function(errorObject) {
+                    //console.log(" eita porra The read failed: " + errorObject.code);
+                  }
+                );
+            
+                 } catch(err){
+                //console.log(err)
+                 }
+

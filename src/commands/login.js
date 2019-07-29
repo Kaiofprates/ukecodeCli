@@ -17,7 +17,20 @@ module.exports = {
             firebase.initializeApp(credenciais.firebaseConfig);
             
             firebase.auth().signInWithEmailAndPassword(email,senha).then(user=>{
-                print.success(firebase.auth().currentUser.metadata)
+                var Storage = require('node-storage');
+                var store = new Storage('./db');
+
+                var acesso = new Date(firebase.auth().currentUser.metadata.lastSignInTime)
+                var uid = firebase.auth().currentUser.uid
+                
+                store.put('acesso', acesso.getTime())
+                store.put('uid' , uid);
+                store.put('email', email); 
+
+                console.log(acesso.getTime() + ' : ' + uid)
+
+               
+
             }).catch(err =>{
                 print.error(err)
             })

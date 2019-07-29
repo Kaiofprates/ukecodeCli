@@ -1,0 +1,53 @@
+ /*
+       Aqui vão todos os comandos
+       
+       */
+      var firebase = require('firebase');
+      var credenciais = require('../../keys/credentials.js')
+      firebase.initializeApp(credenciais.firebaseConfig);
+
+       try{
+      var database = firebase.database().ref("/users/1");
+
+      // database.on(
+      //   "value",
+      //   function(response) {
+      //     var data = response.val()
+      //     console.log(data[0])
+      //   },
+      //   function(errorObject) {
+      //     console.log(" eita porra The read failed: " + errorObject.code);
+      //   }
+      // );
+
+      
+      const new_data  = {
+          "uid"  : "kaio1231",
+          "friends" : ["123","12312","12312"],
+          "mensages" : {
+            "0" : {
+              "content" : "Teste de atualização",
+              "to" : "123",
+              "date": Date.now().toString()
+              
+            }
+          }
+      }
+
+      var user = store.get('uid')
+      var dados = {}
+      dados[user] = new_data;
+      
+
+      database.set(dados,(err)=>{
+        if(err){
+          console.log('erro de gravação     ' +  err)
+        }
+      })
+
+    
+       } catch(err){
+      console.log(err)
+       }
+
+      
